@@ -4,6 +4,7 @@
 **(第一期)[2025.01.02]RAG搜索(1)**               
 主要内容:针对官方提供的CSV、DOCX、PDF、TXT文件内容检索工具进行RAG应用。提供工具demo测试和Crew应用测试，并为大家演示两种大模型GPT和阿里通义千问                 
 相关视频:                
+https://www.bilibili.com/video/BV1yg66YfEr9/                        
 https://youtu.be/b3eB_rfKF_c                     
 
 ## 1.2 CrewAI框架           
