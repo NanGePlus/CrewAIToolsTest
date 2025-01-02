@@ -1,0 +1,20 @@
+extract_health_data_task:
+  description: >
+    根据用户的问题:{query}，从提供的{txt_path}健康档案TXT文件中检索相关信息。
+    健康档案可能包括病史、检查报告、医生记录等。
+  expected_output: >
+    包含以下信息的报告：
+    - 检索内容及其来源（页码、段落位置等）
+    - 简要的上下文说明
+  agent: health_data_extractor
+
+generate_health_advice_task:
+  description: >
+    根据提取的健康数据，分析并生成健康建议。
+    健康建议应清晰、可操作，并针对用户的需求提供解决方案。
+  expected_output: >
+    一段总结性健康建议，包括以下内容：
+    - 数据的总结
+    - 针对问题的健康建议
+    - 如有必要，下一步行动的建议
+  agent: health_advisor
