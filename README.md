@@ -2,7 +2,7 @@
 ## 1.1 主要内容                                                 
 本期系列相关视频为大家测试CrewAI官方提供的Tools，按照发布的先后顺序:                          
 **(第一期)[2025.01.02]RAG搜索(1)**               
-主要内容:针对官方提供的CSV、DOCX、PDF、TXT文件内容检索工具进行RAG应用。提供工具demo测试和Crew应用测试                                              
+主要内容:针对官方提供的CSV、DOCX、PDF、TXT文件内容检索工具进行RAG应用。提供工具demo测试和Crew应用测试，并为大家演示两种大模型GPT和阿里通义千问                                                             
 
 ## 1.2 CrewAI框架           
 CrewAI是一个用于构建多Agent协作应用的框架，它能够让多个具有不同角色和目标的Agent共同协作，完成复杂的任务                          
@@ -58,7 +58,11 @@ pip install -r requirements.txt
 GPT大模型配置参数(代理方式):                                  
 OPENAI_BASE_URL=https://yunwu.ai/v1                          
 OPENAI_API_KEY=sk-ux4NQ9lOgCwqJMrJjjungDRDwZjlGqCnaln9n5aAnwQv8FEc                               
-OPENAI_CHAT_MODEL=gpt-4o-mini                           
+OPENAI_CHAT_MODEL=gpt-4o-mini                          
+国产大模型阿里通义千问配置参数(使用OneAPI方式):                                                                
+OPENAI_BASE_URL=http://139.224.72.218:3000/v1                                            
+OPENAI_API_KEY=sk-yYmtTYwbJBlPzW23B208Dc345c57489bB192A6BfF694207b                                                                   
+OPENAI_CHAT_MODEL=openai/qwen-plus                                                                   
 **(2)tools中指定模型配置**                      
 GPT大模型配置参数(代理方式):          
 tool = CSVSearchTool(                
@@ -80,15 +84,28 @@ tool = CSVSearchTool(
             ),                     
         ),                   
     )                     
-)                                  
-
-
-
-
-
-
-
-
+)                       
+国产大模型阿里通义千问配置参数(使用OneAPI方式):        
+tool = CSVSearchTool(                
+    config=dict(                
+        llm=dict(                 
+            provider="openai",                    
+            config=dict(                
+                base_url="http://139.224.72.218:3000/v1",                      
+                api_key="sk-yYmtTYwbJBlPzW23B208Dc345c57489bB192A6BfF694207b",                 
+                model="qwen-plus"                
+            ),                      
+        ),                 
+        embedder=dict(                    
+            provider="openai",                 
+            config=dict(                    
+                api_base="http://139.224.72.218:3000/v1",                   
+                api_key="sk-yYmtTYwbJBlPzW23B208Dc345c57489bB192A6BfF694207b",                    
+                model="text-embedding-v1"                     
+            ),                     
+        ),                   
+    )                     
+)      
 
 
 
